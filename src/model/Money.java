@@ -1,4 +1,4 @@
-package moneyconverte;
+package model;
 
 public class Money {
     private Number amount;

@@ -1,9 +1,11 @@
-package moneyconverte;
+package model;
+
+import java.util.Date;
 
 public class ExchangeRate {
     private Currency fromCurrency;
     private Currency toCurrency;
-    private date date;
+    private Date date;
     private Number rate;
 
     public Currency getFromCurrency() {
@@ -14,7 +16,7 @@ public class ExchangeRate {
         return toCurrency;
     }
 
-    public date getDate() {
+    public Date getDate() {
         return date;
     }
 

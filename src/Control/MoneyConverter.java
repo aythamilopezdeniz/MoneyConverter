@@ -1,4 +1,4 @@
-package moneyconverte;
+package Control;
 
 public class MoneyConverter {
 
