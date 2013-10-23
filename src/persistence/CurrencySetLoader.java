@@ -9,7 +9,7 @@ import model.CurrencySet;
 
 public class CurrencySetLoader {
 
-    private static Object instance;
+    private static CurrencySetLoader instance;
 
     private CurrencySetLoader() {
     }
