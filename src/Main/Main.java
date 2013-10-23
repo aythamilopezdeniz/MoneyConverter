@@ -1,6 +1,6 @@
-package Control;
+package Main;
 
-public class MoneyConverter {
+public class Main {
 
     public static void main(String[] args) {
     }

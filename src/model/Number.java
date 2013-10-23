@@ -56,21 +56,4 @@ public class Number {
     private boolean equals(Number number){
         return(numerator==number.numerator&&denominator==number.denominator);
     }
-
-    public Number addition(Number fraction1, Number fraction2) {
-        return new Number(fraction1.numerator * fraction2.denominator
-                + fraction1.denominator * fraction2.numerator,
-                fraction1.denominator * fraction2.denominator);
-    }
-
-    public Number subtract(Number fraction1, Number fraction2) {
-        return new Number(fraction1.numerator * fraction2.denominator
-                - fraction1.denominator * fraction2.numerator,
-                fraction1.denominator * fraction2.denominator);
-    }
-
-    public Number multiplication(Number fraction1, Number fraction2) {
-        return new Number(fraction1.numerator*fraction2.denominator,
-                fraction1.denominator*fraction2.numerator);
-    }
 }
