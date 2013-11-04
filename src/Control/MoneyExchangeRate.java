@@ -4,7 +4,7 @@ import UserInterface.MoneyDialog;
 import persistence.CurrencySetLoader;
 
 public class MoneyExchangeRate {
-    private static final String filename="G:\\Universidad\\Tercer Curso\\Primer Cuatrimestre\\Ingeniería del Software 2\\Prácticas";
+    private static final String filename="G:\\Universidad\\Tercer Curso\\Primer Cuatrimestre\\Ingeniería del Software 2\\Prácticas\\moneyConverter\\currency_list.txt";
     
     public void execute(){
         CurrencySetLoader.getInstance().load(filename);
