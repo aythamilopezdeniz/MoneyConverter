@@ -1,25 +1,28 @@
 package UserInterface;
 
 import java.util.Scanner;
+import model.Currency;
+import model.Money;
+import model.Number;
 
 public class MoneyDialog {
-    private Number money;
-    private Number fromCurrecy;
+    private Money money;
     
     public void execute(){
         Scanner in=new Scanner(System.in);
         System.out.println("Inserte una cantidad: ");
-        money = in.nextInt();
-        System.out.println("Inserte la divisa: ");
+        Double amount = in.nextDouble();
+        money = new Money(new Number(amount), readCurrency());
     }
 
-    public Number getMoney() {
+    public Money getMoney() {
         return money;
     }
 
-    public Number getFromCurrecy() {
-        return fromCurrecy;
+    private Currency readCurrency() {
+        CurrencyDialog dialog =new CurrencyDialog();
+        dialog .execute();        
+        return dialog.getCurrency();
     }
-    
     
 }

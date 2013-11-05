@@ -1,8 +1,13 @@
 package model;
 
 public class Money {
-    private Number amount;
-    private Currency currency;
+    private final Number amount;
+    private final Currency currency;
+
+    public Money(Number amount, Currency curency) {
+        this.amount=amount;
+        this.currency=curency;
+    }
 
     public Number getAmount() {
         return amount;

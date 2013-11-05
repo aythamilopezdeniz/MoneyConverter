@@ -1,7 +1,8 @@
-package model;
+package persistence;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import model.Currency;
 
 public class CurrencySet extends HashSet<Currency>{
     private static CurrencySet instance;

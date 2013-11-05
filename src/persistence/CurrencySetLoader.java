@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import model.Currency;
-import model.CurrencySet;
 
 public class CurrencySetLoader {
 

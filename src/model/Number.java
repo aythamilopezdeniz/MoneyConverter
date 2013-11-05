@@ -16,11 +16,11 @@ public class Number {
     }
 
     public Number(double number) {
-        numerator=(long)number;
-        denominator=1;
-        while(numerator!=number*denominator){
-            denominator*=denominator*10;
-            numerator*=(long)(number*denominator);
+        numerator = (long) number;
+        denominator = 1;
+        while (numerator != number * denominator) {
+            denominator *= denominator * 10;
+            numerator *= (long) (number * denominator);
         }
         reduce();
     }
@@ -37,23 +37,31 @@ public class Number {
         return denominator;
     }
 
-    private void reduce(){
-        int[] primeNumbers = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
+    private void reduce() {
+        int[] primeNumbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
         for (int i : primeNumbers) {
-            while(this.numerator%primeNumbers[i]==0&&this.denominator%primeNumbers[i]==0){
-                this.numerator/=primeNumbers[i];
-                this.denominator/=primeNumbers[i];
+            while (this.numerator % primeNumbers[i] == 0 && this.denominator % primeNumbers[i] == 0) {
+                this.numerator /= primeNumbers[i];
+                this.denominator /= primeNumbers[i];
             }
         }
     }
-    
-    public boolean equals(Object object){
-        if(object==null)return false;
-        if(object instanceof Number)return equals((Number)object);
+
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (object instanceof Number) {
+            return equals((Number) object);
+        }
         return false;
     }
-    
-    private boolean equals(Number number){
-        return(numerator==number.numerator&&denominator==number.denominator);
+
+    private boolean equals(Number number) {
+        return (numerator == number.numerator && denominator == number.denominator);
+    }
+
+    public Number multiply(Number number) {
+        return new Number(numerator * number.numerator, denominator * number.denominator);
     }
 }

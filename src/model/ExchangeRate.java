@@ -8,6 +8,13 @@ public class ExchangeRate {
     private Date date;
     private Number rate;
 
+    public ExchangeRate(Date date, Currency fromCurrency, Currency toCurrency, Number rate) {
+        this.rate = rate;
+        this.fromCurrency = fromCurrency;
+        this.toCurrency = toCurrency;
+        this.date = date;
+    }
+
     public Currency getFromCurrency() {
         return fromCurrency;
     }
