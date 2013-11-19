@@ -14,7 +14,8 @@ public class ExchangeMoneyControl {
 
     public void execute() {
         Money money = readMoney();
-        MoneyViewer viewer = new MoneyViewer(MoneyExchanger.exchange(money, loadRate(money.getCurrency(), readCurrency())));
+        MoneyViewer viewer = new MoneyViewer(MoneyExchanger.exchange(money, 
+                loadRate(money.getCurrency(), readCurrency())));
         viewer.show();
     }
 

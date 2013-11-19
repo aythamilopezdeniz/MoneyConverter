@@ -1,8 +1,7 @@
-package persistence;
+package model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import model.Currency;
 
 public class CurrencySet extends HashSet<Currency>{
     private static CurrencySet instance;
@@ -29,6 +28,7 @@ public class CurrencySet extends HashSet<Currency>{
         }
         return null;
     }
+    
     public Currency[] search(String token){
         ArrayList<Currency> list=new ArrayList<>();
         for (Currency currency : this) {

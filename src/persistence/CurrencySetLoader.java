@@ -1,5 +1,6 @@
 package persistence;
 
+import model.CurrencySet;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,7 +18,7 @@ public class CurrencySetLoader {
         if (instance == null) {
             instance = new CurrencySetLoader();
         }
-        return null;
+        return instance;
     }
 
     public CurrencySet load(String filename) {

@@ -23,6 +23,5 @@ public class MoneyDialog {
         CurrencyDialog dialog =new CurrencyDialog();
         dialog .execute();        
         return dialog.getCurrency();
-    }
-    
+    }   
 }

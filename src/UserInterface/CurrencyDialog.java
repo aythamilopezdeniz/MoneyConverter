@@ -2,7 +2,7 @@ package UserInterface;
 
 import java.util.Scanner;
 import model.Currency;
-import persistence.CurrencySet;
+import model.CurrencySet;
 
 public class CurrencyDialog {
     private Currency currency;
