@@ -23,7 +23,7 @@ public class CurrencySet extends HashSet<Currency>{
     
     public Currency get(String code){
         for (Currency currency : this) {
-            if(code.equals(currency.getCode()))
+            if(code.equalsIgnoreCase(currency.getCode()))
                 return currency;
         }
         return null;

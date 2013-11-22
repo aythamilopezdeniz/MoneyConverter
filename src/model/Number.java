@@ -40,9 +40,9 @@ public class Number {
     private void reduce() {
         int[] primeNumbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
         for (int i : primeNumbers) {
-            while (this.numerator % primeNumbers[i] == 0 && this.denominator % primeNumbers[i] == 0) {
-                this.numerator /= primeNumbers[i];
-                this.denominator /= primeNumbers[i];
+            while (this.numerator % i == 0 && this.denominator % i == 0) {
+                this.numerator /= i;
+                this.denominator /= i;
             }
         }
     }

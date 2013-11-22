@@ -20,10 +20,14 @@ public class CurrencySetLoader {
         }
         return instance;
     }
+    
+    public void load(){
+        CurrencySet.getInstance().add(new Currency("EUR", "Euros","E"));
+    }
 
     public CurrencySet load(String filename) {
         CurrencySet set=CurrencySet.getInstance();
-        BufferedReader reader = createFilename(filename);
+        BufferedReader reader = createBufferedReader(filename);
         while(true){
             String line=readLine(reader);
             if(line==null)break;
@@ -33,9 +37,10 @@ public class CurrencySetLoader {
         return set;
     }
 
-    private BufferedReader createFilename(String filename) {
+    private BufferedReader createBufferedReader(String filename) {
         try {
             BufferedReader reader=new BufferedReader(new FileReader(filename));
+            return reader;
         } catch (FileNotFoundException ex) {
         }
         return null;
@@ -45,9 +50,9 @@ public class CurrencySetLoader {
         String[] amount=line.split(",");
         switch(amount.length){
             case 3:
-                return new Currency(amount[0], amount[1], amount[2]);
+                return new Currency(amount[1], amount[0], amount[2]);
             case 2:
-                return new Currency(amount[0], amount[1]);
+                return new Currency(amount[1], amount[0]);
             default:
                 return null;
         }

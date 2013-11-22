@@ -1,5 +1,7 @@
 package Control;
 
+import UserInterface.ConsoleCurrencyDialog;
+import UserInterface.ConsoleMoneyDialog;
 import UserInterface.CurrencyDialog;
 import UserInterface.MoneyDialog;
 import UserInterface.MoneyViewer;
@@ -13,9 +15,10 @@ public class ExchangeMoneyControl {
 
 
     public void execute() {
-        Money money = readMoney();
+        Money money=readMoney();
+        Currency currency=readTargetCurrency();
         MoneyViewer viewer = new MoneyViewer(MoneyExchanger.exchange(money, 
-                loadRate(money.getCurrency(), readCurrency())));
+                loadRate(money.getCurrency(), currency)));
         viewer.show();
     }
 
@@ -24,14 +27,14 @@ public class ExchangeMoneyControl {
     }
 
     private Money readMoney() {
-        MoneyDialog dialog = new MoneyDialog();
-        dialog.execute();
+        MoneyDialog dialog = new ConsoleMoneyDialog();
+        dialog.show();
         return dialog.getMoney();
     }
 
-    private Currency readCurrency() {
-        CurrencyDialog dialog = new CurrencyDialog();
-        dialog.execute();
+    private Currency readTargetCurrency() {
+        CurrencyDialog dialog = new ConsoleCurrencyDialog();
+        dialog.show();
         return dialog.getCurrency();
     }
 }
