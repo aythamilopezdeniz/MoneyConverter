@@ -24,9 +24,11 @@ public class ConsoleMoneyDialog implements MoneyDialog{
     }
 
     private Number readAmount() {
-        Scanner in=new Scanner(System.in);
+/*        Scanner in=new Scanner(System.in);
         System.out.println("Introduzca cantidad de dinero: ");
-        return new Number(in.nextDouble());
+        return new Number(in.nextDouble());*/
+        MoneyPanel moneyConsole=new MoneyPanel();
+        return new Number(Double.parseDouble(moneyConsole.getField()));
     }
 
     private Currency readCurrency() {

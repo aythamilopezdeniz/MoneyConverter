@@ -1,6 +1,7 @@
 package Main;
 
-import Control.ExchangeMoneyControl;
+//import Control.ExchangeMoneyControl;
+import Control.MainFrame;
 import persistence.CurrencySetLoader;
 
 public class Main {
@@ -8,7 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
         CurrencySetLoader.getInstance().load(filename);
-        ExchangeMoneyControl control=new ExchangeMoneyControl();
-        control.execute();
+        MainFrame frame=new MainFrame();
+/*        ExchangeMoneyControl control=new ExchangeMoneyControl();
+        control.execute();*/
     }
 }
