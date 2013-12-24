@@ -1,5 +1,6 @@
-package Control;
+package UserInterface;
 
+import Control.ExchangeMoneyControl;
 import UserInterface.CurrencyPanel;
 import UserInterface.MoneyPanel;
 import java.awt.BorderLayout;
@@ -11,9 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
-//    private MoneyPanel moneyPanel;
-//    private CurrencyPanel currencyPanel;
+    private MoneyPanel moneyPanel;
+    private CurrencyPanel currencyPanel;
 //    private JTextField leido;
+    
     public MainFrame(){
         this.setTitle("Money Calculator");
         this.setBounds(550, 250, 350, 350);
@@ -42,15 +44,15 @@ public class MainFrame extends JFrame{
 
     private JPanel createContent() {
         JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
-//        moneyPanel=new MoneyPanel();
-//        currencyPanel=new CurrencyPanel();
+        moneyPanel=new MoneyPanel();
+        currencyPanel=new CurrencyPanel();
 //        leido= new JTextField(7);
 //        leido.setEditable(false);
 //        panel.add(leido);
-//        panel.add(moneyPanel);
-//        panel.add(currencyPanel);
-        panel.add(new MoneyPanel());
-        panel.add(new CurrencyPanel());
+        panel.add(moneyPanel);
+        panel.add(currencyPanel);
+//        panel.add(new MoneyPanel());
+//        panel.add(new CurrencyPanel());
         return panel;
     }
 

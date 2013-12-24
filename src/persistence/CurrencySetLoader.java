@@ -23,6 +23,8 @@ public class CurrencySetLoader {
     
     public void load(){
         CurrencySet.getInstance().add(new Currency("EUR", "Euros","E"));
+        CurrencySet.getInstance().add(new Currency("USD", "United States Dollar","$"));
+        CurrencySet.getInstance().add(new Currency("GBP", "United Kingdom Pound","£"));
     }
 
     public CurrencySet load(String filename) {

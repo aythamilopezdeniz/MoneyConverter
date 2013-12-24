@@ -16,7 +16,7 @@ public class ExchangeMoneyControl {
 
     public void execute() {
         Money money=readMoney();
-        Currency currency=readTargetCurrency();
+        Currency currency=readCurrency();
         MoneyViewer viewer = new MoneyViewer(MoneyExchanger.exchange(money, 
                 loadRate(money.getCurrency(), currency)));
         viewer.show();
@@ -32,7 +32,7 @@ public class ExchangeMoneyControl {
         return dialog.getMoney();
     }
 
-    private Currency readTargetCurrency() {
+    private Currency readCurrency() {
         CurrencyDialog dialog = new ConsoleCurrencyDialog();
         dialog.show();
         return dialog.getCurrency();

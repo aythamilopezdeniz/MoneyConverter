@@ -7,6 +7,7 @@ import model.Number;
 
 public class ConsoleMoneyDialog implements MoneyDialog{
     private Money money;
+    //private MoneyPanel moneyConsole;
 
     @Override
     public Money getMoney() {
@@ -24,11 +25,11 @@ public class ConsoleMoneyDialog implements MoneyDialog{
     }
 
     private Number readAmount() {
-/*        Scanner in=new Scanner(System.in);
+        //moneyConsole=new MoneyPanel();
+        //return new Number(Double.parseDouble(moneyConsole.getField()));
+        Scanner in=new Scanner(System.in);
         System.out.println("Introduzca cantidad de dinero: ");
-        return new Number(in.nextDouble());*/
-        MoneyPanel moneyConsole=new MoneyPanel();
-        return new Number(Double.parseDouble(moneyConsole.getField()));
+        return new Number(in.nextDouble());
     }
 
     private Currency readCurrency() {
