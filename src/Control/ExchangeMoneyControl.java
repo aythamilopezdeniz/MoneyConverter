@@ -1,7 +1,5 @@
 package Control;
 
-import UserInterface.ConsoleCurrencyDialog;
-import UserInterface.ConsoleMoneyDialog;
 import UserInterface.CurrencyDialog;
 import UserInterface.MoneyDialog;
 import UserInterface.MoneyViewer;
@@ -12,14 +10,22 @@ import model.MoneyExchanger;
 import persistence.ExchangeRateLoader;
 
 public class ExchangeMoneyControl {
+    private final MoneyViewer moneyViewer;
+    private final CurrencyDialog currencyDialog;
+    private final MoneyDialog moneyDialog;
 
+    public ExchangeMoneyControl(MoneyDialog moneyDialog, CurrencyDialog currencyDialog, 
+            MoneyViewer moneyViewer) {
+        this.moneyDialog=moneyDialog;
+        this.currencyDialog=currencyDialog;
+        this.moneyViewer=moneyViewer;
+    }
 
     public void execute() {
         Money money=readMoney();
-        Currency currency=readCurrency();
-        MoneyViewer viewer = new MoneyViewer(MoneyExchanger.exchange(money, 
-                loadRate(money.getCurrency(), currency)));
-        viewer.show();
+        moneyViewer.setMoney(MoneyExchanger.exchange(money, 
+                loadRate(money.getCurrency(), readCurrency())));
+        moneyViewer.show();
     }
 
     private ExchangeRate loadRate(Currency source, Currency target) {
@@ -27,14 +33,12 @@ public class ExchangeMoneyControl {
     }
 
     private Money readMoney() {
-        MoneyDialog dialog = new ConsoleMoneyDialog();
-        dialog.show();
-        return dialog.getMoney();
+        moneyDialog.show();
+        return moneyDialog.getMoney();
     }
 
     private Currency readCurrency() {
-        CurrencyDialog dialog = new ConsoleCurrencyDialog();
-        dialog.show();
-        return dialog.getCurrency();
+        currencyDialog.show();
+        return currencyDialog.getCurrency();
     }
 }

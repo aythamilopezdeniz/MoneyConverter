@@ -1,5 +1,7 @@
-package UserInterface;
+package UserInterface.Console;
 
+import UserInterface.CurrencyDialog;
+import UserInterface.MoneyDialog;
 import java.util.Scanner;
 import model.Currency;
 import model.Money;
@@ -7,7 +9,6 @@ import model.Number;
 
 public class ConsoleMoneyDialog implements MoneyDialog{
     private Money money;
-    //private MoneyPanel moneyConsole;
 
     @Override
     public Money getMoney() {
@@ -25,11 +26,18 @@ public class ConsoleMoneyDialog implements MoneyDialog{
     }
 
     private Number readAmount() {
-        //moneyConsole=new MoneyPanel();
-        //return new Number(Double.parseDouble(moneyConsole.getField()));
         Scanner in=new Scanner(System.in);
-        System.out.println("Introduzca cantidad de dinero: ");
-        return new Number(in.nextDouble());
+        Number number=new Number(0);
+        while(true){
+            System.out.println("Introduzca cantidad de dinero: ");
+            try{
+                number=new Number(in.nextDouble());
+                break;
+            }catch(Exception e){
+                break;
+            }
+        }
+        return number;
     }
 
     private Currency readCurrency() {

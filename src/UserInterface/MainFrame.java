@@ -1,20 +1,17 @@
 package UserInterface;
 
-import Control.ExchangeMoneyControl;
-import UserInterface.CurrencyPanel;
-import UserInterface.MoneyPanel;
+import UserInterface.Swing.CurrencyPanel;
+import UserInterface.Swing.MoneyPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
-    private MoneyPanel moneyPanel;
-    private CurrencyPanel currencyPanel;
-//    private JTextField leido;
     
     public MainFrame(){
         this.setTitle("Money Calculator");
@@ -22,16 +19,11 @@ public class MainFrame extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         createComponents();
         this.setVisible(true);
-        /*JFrame frame=new JFrame("Money Calculator");
-        frame.setBounds(550, 250, 350, 350);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createComponents();
-        frame.setVisible(true);*/
     }
 
     private void createComponents() {
+        this.add(createPanel());
         this.add(createToolbar(), BorderLayout.SOUTH);
-        this.add(createContent());
     }
 
     private JPanel createToolbar() {
@@ -42,28 +34,55 @@ public class MainFrame extends JFrame{
         return panel;
     }
 
-    private JPanel createContent() {
-        JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
-        moneyPanel=new MoneyPanel();
-        currencyPanel=new CurrencyPanel();
-//        leido= new JTextField(7);
-//        leido.setEditable(false);
-//        panel.add(leido);
-        panel.add(moneyPanel);
-        panel.add(currencyPanel);
-//        panel.add(new MoneyPanel());
-//        panel.add(new CurrencyPanel());
+    private JPanel createPanel() {
+        JPanel principalPanel=new JPanel(new BorderLayout());
+        principalPanel.add(firstPanel(), BorderLayout.NORTH);
+        principalPanel.add(SecondPanel(), BorderLayout.CENTER);
+        return principalPanel;
+    }
+
+    private JPanel firstPanel() {
+        JPanel panelMoneyExchange=new JPanel();
+        panelMoneyExchange.add(new JLabel());
+        panelMoneyExchange.add(createMoneyPanel());
+        panelMoneyExchange.add(new JLabel());
+        panelMoneyExchange.add(createCurrencyPanel());
+        return panelMoneyExchange;
+    }
+
+    private JPanel SecondPanel() {
+        JPanel panelDateAndViewer=new JPanel();
+        panelDateAndViewer.add(createDatePanel());
+        panelDateAndViewer.add(createMoneyViewerPanel());
+        return panelDateAndViewer;
+    }
+
+    private JPanel createMoneyPanel() {
+        MoneyPanel panel=new MoneyPanel();
+        return panel;
+    }
+
+    private JPanel createDatePanel() {
+        JPanel panel=new JPanel();
+        return panel;
+    }
+
+    private JPanel createMoneyViewerPanel() {
+        JPanel panel=new JPanel();
+        return panel;
+    }
+
+    private JPanel createCurrencyPanel() {
+        CurrencyPanel panel=new CurrencyPanel();
         return panel;
     }
 
     private JButton createCalculateButton() {
         JButton calculate=new JButton("Calculate");
         calculate.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent accept) {
-//                leido.setText(moneyPanel.getField());
-                ExchangeMoneyControl control=new ExchangeMoneyControl();
-                control.execute();
             }
         });
         return calculate;

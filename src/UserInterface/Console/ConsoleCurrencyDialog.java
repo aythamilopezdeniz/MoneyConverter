@@ -1,5 +1,6 @@
-package UserInterface;
+package UserInterface.Console;
 
+import UserInterface.CurrencyDialog;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
