@@ -1,7 +1,9 @@
 package UserInterface;
 
 import UserInterface.Swing.CurrencyPanel;
+import UserInterface.Swing.DatePanel;
 import UserInterface.Swing.MoneyPanel;
+import UserInterface.Swing.MoneyViewerPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -15,10 +17,11 @@ public class MainFrame extends JFrame{
     
     public MainFrame(){
         this.setTitle("Money Calculator");
-        this.setBounds(550, 250, 350, 350);
+        //this.setBounds(550, 250, 350, 350);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         createComponents();
         this.setVisible(true);
+        this.pack();
     }
 
     private void createComponents() {
@@ -43,37 +46,43 @@ public class MainFrame extends JFrame{
 
     private JPanel firstPanel() {
         JPanel panelMoneyExchange=new JPanel();
-        panelMoneyExchange.add(new JLabel());
+        panelMoneyExchange.add(new JLabel("to:"));
         panelMoneyExchange.add(createMoneyPanel());
-        panelMoneyExchange.add(new JLabel());
+        panelMoneyExchange.add(new JLabel("from:"));
         panelMoneyExchange.add(createCurrencyPanel());
         return panelMoneyExchange;
     }
 
     private JPanel SecondPanel() {
         JPanel panelDateAndViewer=new JPanel();
+        panelDateAndViewer.add(new JLabel("Date:"));
         panelDateAndViewer.add(createDatePanel());
+        panelDateAndViewer.add(new JLabel("Result:"));
         panelDateAndViewer.add(createMoneyViewerPanel());
         return panelDateAndViewer;
     }
 
     private JPanel createMoneyPanel() {
         MoneyPanel panel=new MoneyPanel();
+        panel.show();
         return panel;
     }
 
     private JPanel createDatePanel() {
-        JPanel panel=new JPanel();
+        DatePanel panel=new DatePanel();
+        panel.show();
         return panel;
     }
 
     private JPanel createMoneyViewerPanel() {
-        JPanel panel=new JPanel();
+        MoneyViewerPanel panel=new MoneyViewerPanel();
+        panel.show();
         return panel;
     }
 
     private JPanel createCurrencyPanel() {
         CurrencyPanel panel=new CurrencyPanel();
+        panel.show();
         return panel;
     }
 

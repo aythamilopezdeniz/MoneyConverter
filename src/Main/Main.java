@@ -14,8 +14,8 @@ public class Main {
     private static final String filename = "I:\\currency_list.txt";
 
     public static void main(String[] args) {
-        Console();
-        //Swing();
+        //Console();
+        Swing();
     }
     
     private static void Console(){

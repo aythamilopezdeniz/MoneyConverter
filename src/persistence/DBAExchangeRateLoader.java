@@ -14,7 +14,6 @@ public class DBAExchangeRateLoader {
         String password="orcl";
         String server="localhost:101:orcl";
         DriverManager.registerDriver(new OracleDriver());
-        // jdbc:oracle:thin:@server,userName,password
         Connection connection= DriverManager.getConnection(
                 "jdbc:oracle:thin:@"+ server, userName, password);
         Statement statement=connection.createStatement();
