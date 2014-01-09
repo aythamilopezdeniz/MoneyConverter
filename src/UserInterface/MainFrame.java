@@ -1,24 +1,29 @@
 package UserInterface;
 
+import Command.CommandActionListener;
 import UserInterface.Swing.CurrencyPanel;
 import UserInterface.Swing.DatePanel;
 import UserInterface.Swing.MoneyPanel;
 import UserInterface.Swing.MoneyViewerPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
+    private final CommandActionListener actionListener;
+    private MoneyPanel moneyPanel;
+    private DatePanel datePanel;
+    private MoneyViewerPanel moneyViewer;
+    private CurrencyPanel currencyPanel;
     
-    public MainFrame(){
+    public MainFrame(CommandActionListener actionListener){
+        this.actionListener=actionListener;
         this.setTitle("Money Calculator");
-        //this.setBounds(550, 250, 350, 350);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
         createComponents();
         this.setVisible(true);
         this.pack();
@@ -64,52 +69,57 @@ public class MainFrame extends JFrame{
 
     private JPanel createMoneyPanel() {
         MoneyPanel panel=new MoneyPanel();
+        moneyPanel=panel;
         panel.show();
         return panel;
     }
 
     private JPanel createDatePanel() {
         DatePanel panel=new DatePanel();
+        datePanel=panel;
         panel.show();
         return panel;
     }
 
     private JPanel createMoneyViewerPanel() {
         MoneyViewerPanel panel=new MoneyViewerPanel();
+        moneyViewer=panel;
         panel.show();
         return panel;
     }
 
     private JPanel createCurrencyPanel() {
         CurrencyPanel panel=new CurrencyPanel();
+        currencyPanel=panel;
         panel.show();
         return panel;
     }
 
     private JButton createCalculateButton() {
         JButton calculate=new JButton("Calculate");
-        calculate.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent accept) {
-            }
-        });
+        calculate.addActionListener(actionListener.getActionListener("calculate"));
         return calculate;
     }
 
     private JButton createCancelButton() {
         JButton cancel=new JButton("Cancel");
-        cancel.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent cancel) {
-                exit();
-            }
-        });
+        cancel.addActionListener(actionListener.getActionListener("exit"));
         return cancel;
     }
 
-    private void exit() {
-        dispose();
+    public MoneyPanel getMoneyPanel() {
+        return moneyPanel;
+    }
+
+    public DatePanel getDatePanel() {
+        return datePanel;
+    }
+
+    public MoneyViewerPanel getMoneyViewer() {
+        return moneyViewer;
+    }
+
+    public CurrencyPanel getCurrencyPanel() {
+        return currencyPanel;
     }
 }
