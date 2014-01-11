@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DecimalFormat;
+
 public class Number {
 
     private long numerator;
@@ -47,6 +49,7 @@ public class Number {
         }
     }
 
+    @Override
     public boolean equals(Object object) {
         if (object == null) {
             return false;
@@ -63,5 +66,11 @@ public class Number {
 
     public Number multiply(Number number) {
         return new Number(numerator * number.numerator, denominator * number.denominator);
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df=new DecimalFormat("0.00");
+        return df.format((double)getNumerator()/(double)getDenominator())+"";
     }
 }

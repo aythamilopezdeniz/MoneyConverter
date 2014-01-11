@@ -6,32 +6,38 @@ import Command.CommandCalculate;
 import Command.CommandRegister;
 import Control.ExchangeMoneyControl;
 import UserInterface.Console.ConsoleCurrencyDialog;
+import UserInterface.Console.ConsoleDateDialog;
 import UserInterface.Console.ConsoleMoneyDialog;
 import UserInterface.Console.ConsoleMoneyViewer;
 import UserInterface.CurrencyDialog;
+import UserInterface.DateDialog;
 import UserInterface.MainFrame;
 import UserInterface.MoneyDialog;
 import UserInterface.MoneyViewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import persistence.CurrencySetLoader;
+import persistence.DBAExchangeRateLoader;
+import persistence.ExchangeRateLoader;
 
 public class Main {
 
     private static final String filename = "I:\\currency_list.txt";
 
     public static void main(String[] args) {
-        //Console();
-        Swing();
+        Console();
+        //Swing();
     }
 
     private static void Console() {
         MoneyDialog moneyDialog = new ConsoleMoneyDialog();
         CurrencyDialog currencyDialog = new ConsoleCurrencyDialog();
+        DateDialog dateDialog = new ConsoleDateDialog();
         MoneyViewer moneyViewer = new ConsoleMoneyViewer();
+        ExchangeRateLoader exchangeRateLoader=DBAExchangeRateLoader.getInstance();
         CurrencySetLoader.getInstance().load(filename);
         ExchangeMoneyControl control = new ExchangeMoneyControl(moneyDialog,
-                currencyDialog, moneyViewer);
+                currencyDialog, dateDialog, exchangeRateLoader, moneyViewer);
         control.execute();
     }
 

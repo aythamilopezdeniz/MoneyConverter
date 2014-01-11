@@ -7,13 +7,15 @@ import UserInterface.Swing.CurrencyPanel;
 import UserInterface.Swing.DatePanel;
 import UserInterface.Swing.MoneyPanel;
 import UserInterface.Swing.MoneyViewerPanel;
+import java.util.Date;
 import model.Currency;
 import model.ExchangeRate;
 import model.Money;
+import model.Number;
 import model.MoneyExchanger;
 import persistence.ExchangeRateLoader;
 
-public class CommandCalculate extends Command {
+public class CommandCalculate extends Command implements ExchangeRateLoader {
     private final MoneyViewer moneyViewer;
     private final MoneyDialog moneyDialog;
     private final CurrencyDialog currencyDialog;
@@ -31,11 +33,17 @@ public class CommandCalculate extends Command {
     public void execute() {
         Money money=moneyDialog.getMoney();
         moneyViewer.setMoney(MoneyExchanger.exchange(money,
-                loadRate(money.getCurrency(), currencyDialog.getCurrency())));
+                load(money.getCurrency(), currencyDialog.getCurrency())));
         moneyViewer.show();
     }
 
-    private ExchangeRate loadRate(Currency source, Currency target) {
-        return new ExchangeRateLoader().load(source, target);
+    @Override
+    public ExchangeRate load(Date date, Currency from, Currency to) {
+        return new ExchangeRate(date, from, to, new Number(10,15));
+    }
+
+    @Override
+    public ExchangeRate load(Currency from, Currency to) {
+        return load(new Date(), from, to);
     }
 }

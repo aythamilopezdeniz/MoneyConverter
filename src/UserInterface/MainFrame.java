@@ -51,9 +51,8 @@ public class MainFrame extends JFrame{
 
     private JPanel firstPanel() {
         JPanel panelMoneyExchange=new JPanel();
-        panelMoneyExchange.add(new JLabel("to:"));
         panelMoneyExchange.add(createMoneyPanel());
-        panelMoneyExchange.add(new JLabel("from:"));
+        panelMoneyExchange.add(new JLabel("to:"));
         panelMoneyExchange.add(createCurrencyPanel());
         return panelMoneyExchange;
     }

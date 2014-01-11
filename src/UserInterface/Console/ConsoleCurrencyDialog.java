@@ -30,7 +30,7 @@ public class ConsoleCurrencyDialog implements CurrencyDialog {
 
     private String readCurrencyCode() {
         try {
-            System.out.println("Introduzca la divisa: ");
+            System.out.print("Introduzca la divisa: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             return reader.readLine();
         } catch (IOException ex) {

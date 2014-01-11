@@ -3,10 +3,10 @@ package model;
 import java.util.Date;
 
 public class ExchangeRate {
-    private Currency fromCurrency;
-    private Currency toCurrency;
-    private Date date;
-    private Number rate;
+    private final Currency fromCurrency;
+    private final Currency toCurrency;
+    private final Date date;
+    private final Number rate;
 
     public ExchangeRate(Date date, Currency fromCurrency, Currency toCurrency, Number rate) {
         this.rate = rate;

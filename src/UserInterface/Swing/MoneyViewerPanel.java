@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import model.Money;
 
 public class MoneyViewerPanel extends JPanel implements MoneyViewer {
-    private JLabel resultado;
+    private final JLabel resultado;
     private Money money;
 
     public MoneyViewerPanel() {
@@ -27,7 +27,7 @@ public class MoneyViewerPanel extends JPanel implements MoneyViewer {
 
     private JLabel createLabel() {
         if(money!=null)
-            resultado.setText(""+money);
+            resultado.setText(money.toString());
         return resultado;
     }
 }

@@ -3,42 +3,59 @@ package UserInterface.Swing;
 import UserInterface.CurrencyDialog;
 import UserInterface.MoneyDialog;
 import java.awt.FlowLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import model.Money;
 import model.Number;
 
 public class MoneyPanel extends JPanel implements MoneyDialog{
-    private JTextField amount;
+    private String amount;
     private CurrencyDialog currencyDialog;
-    private Money money;
 
     public MoneyPanel() {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.add(createTextField());
-        this.add(new CurrencyPanel());
-    }
-
-    public MoneyPanel(JTextField amount) {
-        this.amount=amount;
+        this.add(new JLabel("from:"));
+        this.add(CurrencyPanel());
     }
 
     private JTextField createTextField() {
-        amount=new JTextField(10);
-        return amount;
-    }
+        final JTextField textField=new JTextField(10);
+        textField.addKeyListener(new KeyListener() {
 
-    public String getField() {
-        return amount.getText();
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                amount=textField.getText();
+            }
+        });
+        return textField;
     }
 
     @Override
     public Money getMoney() {
-        return money;
+        if(amount==null)amount="0";
+        return new Money(new Number(Double.parseDouble(amount)), currencyDialog.getCurrency());
     }
 
     @Override
     public void setMoney(Money money) {
-        this.money=new Money(new Number(Double.parseDouble(getField())), currencyDialog.getCurrency());
+    }
+
+    private JPanel CurrencyPanel() {
+        CurrencyPanel panel=new CurrencyPanel();
+        currencyDialog=panel;
+        panel.show();
+        return panel;
     }
 }

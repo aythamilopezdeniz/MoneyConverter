@@ -28,13 +28,13 @@ public class ConsoleMoneyDialog implements MoneyDialog{
     private Number readAmount() {
         Scanner in=new Scanner(System.in);
         Number number=new Number(0);
-        while(true){
-            System.out.println("Introduzca cantidad de dinero: ");
+        boolean state=false;
+        while(!state){
+            System.out.print("Introduzca cantidad de dinero: ");
             try{
                 number=new Number(in.nextDouble());
-                break;
+                state=true;
             }catch(Exception e){
-                break;
             }
         }
         return number;
