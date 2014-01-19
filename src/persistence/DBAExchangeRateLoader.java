@@ -36,7 +36,7 @@ public class DBAExchangeRateLoader implements ExchangeRateLoader {
     public ExchangeRate load(Date date, Currency from, Currency to) {
         try {
             Connection connection = getConnection();
-            return new ExchangeRate(date, from, to, getRate(from, to, connection, date));
+            return new ExchangeRate(date, from, to, new Number(getRate(from, to, connection, date)));
         } catch (SQLException ex) {
         }
         return null;
@@ -47,15 +47,16 @@ public class DBAExchangeRateLoader implements ExchangeRateLoader {
         return load(new Date(), from, to);
     }
 
-    private Number getRate(Currency from, Currency to, Connection connection, Date date) {
+    private double getRate(Currency from, Currency to, Connection connection, Date date) {
         try {
-            String query = "Select cambio from historico_cambios " + "where divisa_desde='" + from.getCode()
+            String query = "select cambio from historico_cambios " + "where divisa_desde='" + from.getCode()
                     + "' and divisa_a='" + to.getCode() + "'";
             ResultSet resultSet;
             resultSet=connection.createStatement().executeQuery(query);
-            return new Number(resultSet.getDouble(1));
+            while(resultSet.next())
+                return resultSet.getDouble(1);
         } catch (SQLException ex) {
         }
-        return new Number(0);
+        return 0;
     }
 }

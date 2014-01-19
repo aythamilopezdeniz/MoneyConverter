@@ -2,7 +2,8 @@ package UserInterface.Console;
 
 import UserInterface.CurrencyDialog;
 import UserInterface.MoneyDialog;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import model.Currency;
 import model.Money;
 import model.Number;
@@ -26,13 +27,13 @@ public class ConsoleMoneyDialog implements MoneyDialog{
     }
 
     private Number readAmount() {
-        Scanner in=new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Number number=new Number(0);
         boolean state=false;
         while(!state){
             System.out.print("Introduzca cantidad de dinero: ");
             try{
-                number=new Number(in.nextDouble());
+                number=new Number(Double.parseDouble(reader.readLine()));
                 state=true;
             }catch(Exception e){
             }

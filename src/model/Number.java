@@ -45,7 +45,11 @@ public class Number {
             while (this.numerator % i == 0 && this.denominator % i == 0) {
                 this.numerator /= i;
                 this.denominator /= i;
+                if (this.numerator == 0 && this.denominator == 0) {
+                    break;
+                }
             }
+            if (this.numerator == 0 && this.denominator == 0)break;
         }
     }
 
@@ -70,7 +74,7 @@ public class Number {
 
     @Override
     public String toString() {
-        DecimalFormat df=new DecimalFormat("0.00");
-        return df.format((double)getNumerator()/(double)getDenominator())+"";
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format((double) getNumerator() / (double) getDenominator()) + "";
     }
 }
