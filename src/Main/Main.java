@@ -1,9 +1,9 @@
 package Main;
 
 import Command.Command;
-import Command.CommandActionListener;
-import Command.CommandCalculate;
-import Command.CommandRegister;
+import Command.ActionListenerCommand;
+import Command.CalculateCommand;
+import Command.RegisterCommand;
 import Control.ExchangeMoneyControl;
 import UserInterface.Console.ConsoleCurrencyDialog;
 import UserInterface.Console.ConsoleDateDialog;
@@ -26,7 +26,7 @@ public class Main {
 
     public static void main(String[] args) {
         Console();
-        //Swing();
+        Swing();
     }
 
     private static void Console() {
@@ -43,8 +43,8 @@ public class Main {
 
     private static void Swing() {
         CurrencySetLoader.getInstance().load(filename);
-        final CommandRegister commandRegister = new CommandRegister();
-        CommandActionListener actionListener = new CommandActionListener() {
+        final RegisterCommand commandRegister = new RegisterCommand();
+        ActionListenerCommand actionListener = new ActionListenerCommand() {
 
             @Override
             public ActionListener getActionListener(final String action) {
@@ -60,7 +60,7 @@ public class Main {
         
         final MainFrame frame = new MainFrame(actionListener);
         
-        commandRegister.setActionMap("calculate", new CommandCalculate(
+        commandRegister.setActionMap("calculate", new CalculateCommand(
                 frame.getMoneyPanel(),
                 frame.getCurrencyPanel(),
                 frame.getDatePanel(),

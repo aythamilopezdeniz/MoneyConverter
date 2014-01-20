@@ -21,8 +21,8 @@ public class Number {
         numerator = (long) number;
         denominator = 1;
         while (numerator != number * denominator) {
-            denominator *= denominator * 10;
-            numerator *= (long) (number * denominator);
+            denominator *= 10;
+            numerator = (long) (number * denominator);
         }
         reduce();
     }
@@ -45,11 +45,7 @@ public class Number {
             while (this.numerator % i == 0 && this.denominator % i == 0) {
                 this.numerator /= i;
                 this.denominator /= i;
-                if (this.numerator == 0 && this.denominator == 0) {
-                    break;
-                }
             }
-            if (this.numerator == 0 && this.denominator == 0)break;
         }
     }
 

@@ -1,6 +1,6 @@
 package UserInterface;
 
-import Command.CommandActionListener;
+import Command.ActionListenerCommand;
 import UserInterface.Swing.CurrencyPanel;
 import UserInterface.Swing.DatePanel;
 import UserInterface.Swing.MoneyPanel;
@@ -13,13 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
-    private final CommandActionListener actionListener;
+    private final ActionListenerCommand actionListener;
     private MoneyPanel moneyPanel;
     private DatePanel datePanel;
     private MoneyViewerPanel moneyViewer;
     private CurrencyPanel currencyPanel;
     
-    public MainFrame(CommandActionListener actionListener){
+    public MainFrame(ActionListenerCommand actionListener){
         this.actionListener=actionListener;
         this.setTitle("Money Calculator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

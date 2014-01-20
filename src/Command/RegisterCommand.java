@@ -2,7 +2,7 @@ package Command;
 
 import java.util.HashMap;
 
-public class CommandRegister {
+public class RegisterCommand {
     private final HashMap<String, Command> actionMap=new HashMap<>();
 
     public Command getActionMap(String action){

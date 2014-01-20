@@ -12,14 +12,18 @@ import oracle.jdbc.OracleDriver;
 
 public class DBAExchangeRateLoader implements ExchangeRateLoader {
     private static DBAExchangeRateLoader instace;
+    private Connection connection;
 
     private DBAExchangeRateLoader() {
+        connection = null;
+        try {
+            connection = getConnection();
+        } catch (SQLException ex) {
+        }
     }
 
     public static DBAExchangeRateLoader getInstance() {
-        if(instace==null){
-            instace=new DBAExchangeRateLoader();
-        }
+        if(instace==null) instace=new DBAExchangeRateLoader();
         return instace;
     }
 
@@ -35,9 +39,8 @@ public class DBAExchangeRateLoader implements ExchangeRateLoader {
     @Override
     public ExchangeRate load(Date date, Currency from, Currency to) {
         try {
-            Connection connection = getConnection();
-            return new ExchangeRate(date, from, to, new Number(getRate(from, to, connection, date)));
-        } catch (SQLException ex) {
+            return new ExchangeRate(date, from, to, new Number(getRate(date, from, to)));
+        } catch (Exception ex) {
         }
         return null;
     }
@@ -47,7 +50,7 @@ public class DBAExchangeRateLoader implements ExchangeRateLoader {
         return load(new Date(), from, to);
     }
 
-    private double getRate(Currency from, Currency to, Connection connection, Date date) {
+    private double getRate(Date date, Currency from, Currency to) {
         try {
             String query = "select cambio from historico_cambios " + "where divisa_desde='" + from.getCode()
                     + "' and divisa_a='" + to.getCode() + "'";
