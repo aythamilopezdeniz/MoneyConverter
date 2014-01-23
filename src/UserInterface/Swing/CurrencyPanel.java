@@ -10,7 +10,6 @@ import model.Currency;
 import model.CurrencySet;
 
 public class CurrencyPanel extends JPanel implements CurrencyDialog{
-    //private static final String[] currencies=new String[]{"EUR", "USD", "CAD", "GBP"};
     private Currency currency;
     private JComboBox comboCurrencies;
 
